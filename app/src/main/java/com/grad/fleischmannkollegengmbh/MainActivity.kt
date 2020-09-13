@@ -1,6 +1,8 @@
 package com.grad.fleischmannkollegengmbh
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,6 +12,8 @@ import com.grad.fleischmannkollegengmbh.adapter.SiteHeadingAdapter
 import com.grad.fleischmannkollegengmbh.model.Site
 import com.grad.fleischmannkollegengmbh.viewmodel.SitesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
         viewModel = ViewModelProviders.of(this).get(
             SitesViewModel::class.java
         )
@@ -57,5 +60,27 @@ class MainActivity : AppCompatActivity() {
                 rvSites.adapter = siteAdapter
             }
         )
+
+        search.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                filter(s.toString());
+            }
+        })
+
+    }
+    private fun filter(text: String) {
+        val filteredList: ArrayList<Site> = ArrayList()
+        for (item in siteList) {
+            if (item.siteName.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+                filteredList.add(item)
+            }
+        }
+        siteAdapter.filterList(filteredList)
     }
 }

@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="base_grid_size">8dp</dimen>
+    <dimen name="doub_grid_size">16dp</dimen>
+    <dimen name="sl_toolbar_size">56dp</dimen>
+
 </resources>

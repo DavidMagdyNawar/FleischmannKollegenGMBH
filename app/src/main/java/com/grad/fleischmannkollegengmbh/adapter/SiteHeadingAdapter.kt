@@ -13,6 +13,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.grad.fleischmannkollegengmbh.R
 import com.grad.fleischmannkollegengmbh.model.Site
@@ -20,9 +21,10 @@ import kotlinx.android.synthetic.main.list_item_main.view.*
 
 
 class SiteHeadingAdapter(
-    val sites: MutableList<Site>,
+    var sites: MutableList<Site>,
     val context: Context
 ) : RecyclerView.Adapter<SiteHeadingAdapter.ViewHolder>() {
+    private val viewPool = RecyclerView.RecycledViewPool()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
@@ -32,6 +34,17 @@ class SiteHeadingAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        val childLayoutManager =
+            LinearLayoutManager(holder.itemView.lastCheckRV.context, RecyclerView.VERTICAL, false)
+
+        holder.itemView.lastCheckRV.apply {
+            layoutManager = childLayoutManager
+            adapter = LastCheckAdapter(context, sites[position].lastChecked.values)
+            setRecycledViewPool(viewPool)
+        }
+
+
         holder.itemView.tag = position
 
         holder.itemView.siteNameTV.text = sites[position].siteName
@@ -82,9 +95,11 @@ class SiteHeadingAdapter(
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        val tvAnimalType = view.tvMain
     }
-
+    fun filterList(filteredList: ArrayList<Site>) {
+        sites = filteredList
+        notifyDataSetChanged()
+    }
     fun ImageView.setSvgColor(@ColorRes color: Int) =
         setColorFilter(ContextCompat.getColor(context, color), PorterDuff.Mode.SRC_IN)
 }
