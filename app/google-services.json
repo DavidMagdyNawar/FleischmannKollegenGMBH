@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "751509969607",
+    "firebase_url": "https://fleichmann-8d449.firebaseio.com",
+    "project_id": "fleichmann-8d449",
+    "storage_bucket": "fleichmann-8d449.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751509969607:android:7fa058823d2b1247b5fce2",
+        "android_client_info": {
+          "package_name": "com.grad.fleischmannkollegengmbh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751509969607-me1ch15q533749takkkrdgmaq2vihr27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvrnAnPIgf8zOc-1g_VYOCIbcjAOTo0zA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751509969607-me1ch15q533749takkkrdgmaq2vihr27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
